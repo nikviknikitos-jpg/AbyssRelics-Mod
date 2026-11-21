@@ -20,7 +20,7 @@ public class TitanBloodItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient && user instanceof ServerPlayerEntity sp) {
             ServerWorld sw = (ServerWorld) world;
-            sp.getPersistentData().putInt("abyss_titan_ticks", 500);
+            AbyssTickHandler.setTitanTicks(sp, 500);
             var lightning = net.minecraft.entity.EntityType.LIGHTNING_BOLT.create(sw);
             if (lightning != null) {
                 lightning.refreshPositionAfterTeleport(sp.getX(), sp.getY(), sp.getZ());
