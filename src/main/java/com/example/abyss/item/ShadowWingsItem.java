@@ -1,4 +1,5 @@
 package com.example.abyss.item;
+import com.example.abyss.AbyssTickHandler;
 
 import com.example.abyss.AbyssUtil;
 import net.minecraft.entity.player.PlayerEntity;
