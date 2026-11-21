@@ -19,7 +19,7 @@ public class ShadowWingsItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient && user instanceof ServerPlayerEntity sp) {
-            sp.getPersistentData().putInt("abyss_wings_ticks", 600);
+            AbyssTickHandler.setWingsTicks(sp, 600);
             sp.getAbilities().allowFlying = true;
             sp.sendAbilitiesUpdate();
             sp.getWorld().playSound(null, sp.getBlockPos(), SoundEvents.ENTITY_PHANTOM_FLAP,
