@@ -11,6 +11,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -50,14 +51,13 @@ public class VoidShardEntity extends Entity {
         }
         if (!(getWorld() instanceof ServerWorld sw)) return;
         if (life < 40) {
-            // descend from sky
             setPosition(getX(), getY() - 0.15, getZ());
             return;
         }
         if (target == null || !target.isAlive()) {
             var nearest = sw.getEntitiesByClass(LivingEntity.class,
                     new Box(getX() - 32, getY() - 32, getZ() - 32, getX() + 32, getY() + 32, getZ() + 32),
-                    e -> e.isAlive() && !(e instanceof net.minecraft.entity.player.PlayerEntity));
+                    e -> e.isAlive() && !((Object)e instanceof net.minecraft.entity.player.PlayerEntity));
             if (!nearest.isEmpty()) target = nearest.get(0);
         }
         if (target != null) {
