@@ -42,7 +42,20 @@ public class AbyssTickHandler {
                 p.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 10, 4, false, false));
                 if (p.age % 2 == 0) {
                     double r = 3.5;
-                    for (int i = 0; i  e.isAlive())) {
+                    int i = 0;
+                    while (i != 12) {
+                        double a = (p.age + i * 30) * 0.1;
+                        world.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME,
+                                p.getX() + Math.cos(a) * r, p.getY() + 1, p.getZ() + Math.sin(a) * r,
+                                1, 0, 0.02, 0, 0.01);
+                        world.spawnParticles(ParticleTypes.END_ROD,
+                                p.getX() + Math.cos(-a) * r, p.getY() + 0.5, p.getZ() + Math.sin(-a) * r,
+                                1, 0, 0.02, 0, 0.01);
+                        i++;
+                    }
+                    Box box = new Box(p.getX() - r, p.getY() - r, p.getZ() - r,
+                            p.getX() + r, p.getY() + r, p.getZ() + r);
+                    for (var e : world.getEntitiesByClass(net.minecraft.entity.mob.MobEntity.class, box, e -> e.isAlive())) {
                         Vec3d dir = e.getPos().subtract(p.getPos()).normalize().multiply(0.6);
                         e.setVelocity(dir.x, 0.3, dir.z);
                         e.velocityModified = true;
