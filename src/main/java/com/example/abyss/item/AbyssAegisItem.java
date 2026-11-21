@@ -19,7 +19,7 @@ public class AbyssAegisItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient && user instanceof ServerPlayerEntity sp) {
-            sp.getPersistentData().putInt("abyss_aegis_ticks", 240);
+            AbyssTickHandler.setAegisTicks(sp, 240);
             sp.getWorld().playSound(null, sp.getBlockPos(), SoundEvents.BLOCK_BEACON_ACTIVATE,
                     SoundCategory.PLAYERS, 2.0f, 1.5f);
             sp.getItemCooldownManager().set(this, 300);
