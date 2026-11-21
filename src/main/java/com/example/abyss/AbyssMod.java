@@ -1,6 +1,9 @@
 package com.example.abyss;
 
 import com.example.abyss.command.GiveAbyssCommand;
+import com.example.abyss.entity.BoneSerpentEntity;
+import com.example.abyss.entity.SwarmDroneEntity;
+import com.example.abyss.entity.VoidShardEntity;
 import com.example.abyss.registry.ModEntities;
 import com.example.abyss.registry.ModItems;
 import net.fabricmc.api.ModInitializer;
